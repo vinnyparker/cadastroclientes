@@ -1,14 +1,10 @@
 package br.com.venustech.cadastro.model;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
 
 /**
  * Project cadastro
@@ -17,11 +13,22 @@ import java.io.Serializable;
  **/
 
 @MappedSuperclass
-@Getter
-@Setter
-@EqualsAndHashCode
+@Data
 public abstract class AbstractModel<Long extends Serializable> implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private java.lang.Long id;
+
+    @Column(name = "ctrl", length = 10, columnDefinition = "varchar(10) NOT NULL DEFAULT 0")
+    private String ctrl;
+
+    @Column(name = "datacadastro", columnDefinition = "date NOT NULL DEFAULT current_date")
+    private LocalDate dataCadastro;
+
+    @PrePersist
+    public void prePersist() {
+        setCtrl("0");
+        setDataCadastro(LocalDate.now());
+
+    }
 }
