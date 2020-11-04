@@ -31,7 +31,7 @@ public class Cliente extends AbstractModel<Long> {
 
     @Column(name = "cpf", length = 11, nullable = false)
     @NotNull(message = "O CPF não pode ser Nulo")
-    @CPF(message = "O Cpf Pecisa ser Válido")
+    @CPF(message = "O CPF Pecisa ser Válido")
     private String cpf;
 
 
