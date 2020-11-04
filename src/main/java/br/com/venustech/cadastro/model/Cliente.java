@@ -4,10 +4,13 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 /**
  * Project cadastro
@@ -23,9 +26,12 @@ import javax.persistence.Table;
 public class Cliente extends AbstractModel<Long> {
 
     @Column(name = "nome", length = 200, nullable = false)
+    @NotEmpty(message = "O Nome é um campo Obrigatório")
     private String nome;
 
     @Column(name = "cpf", length = 11, nullable = false)
+    @NotNull(message = "O CPF não pode ser Nulo")
+    @CPF(message = "O Cpf Pecisa ser Válido")
     private String cpf;
 
 

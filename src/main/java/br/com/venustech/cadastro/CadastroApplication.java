@@ -15,12 +15,11 @@ public class CadastroApplication {
         SpringApplication.run(CadastroApplication.class, args);
     }
 
-    @Bean
+    /*@Bean
     public CommandLineRunner run(@Autowired ClienteRepository clienteRepository) {
         return args -> {
             Cliente cliente = Cliente.builder().cpf("01234567891").nome("Jon Snow").build();
             clienteRepository.save(cliente);
         };
-
-    }
+    }*/
 }
