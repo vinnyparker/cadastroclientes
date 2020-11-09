@@ -1,9 +1,6 @@
 package br.com.venustech.cadastro.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.Column;
@@ -17,6 +14,7 @@ import javax.validation.constraints.NotNull;
  * Created by vinny
  * on 05/09/2020
  **/
+@EqualsAndHashCode(callSuper = true)
 @Entity
 @Data
 @NoArgsConstructor
@@ -26,12 +24,12 @@ import javax.validation.constraints.NotNull;
 public class Cliente extends AbstractModel<Long> {
 
     @Column(name = "nome", length = 200, nullable = false)
-    @NotEmpty(message = "O Nome é um campo Obrigatório")
+    @NotEmpty(message = "{nome.obrigatorio}")
     private String nome;
 
     @Column(name = "cpf", length = 11, nullable = false)
-    @NotNull(message = "O CPF não pode ser Nulo")
-    @CPF(message = "O CPF Pecisa ser Válido")
+    @NotNull(message = "{cpf.obrigatorio}")
+    @CPF(message = "{cpf.invalido}")
     private String cpf;
 
 
