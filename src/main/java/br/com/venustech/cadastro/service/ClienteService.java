@@ -23,6 +23,7 @@ public class ClienteService {
 
     public Cliente save(Cliente cliente) {
 
+        /**Verifica se cpf contem apenas numero antes de salvar*/
         if (!NumberHelper.isOnlyNumber(cliente.getCpf())) {
             cliente.setCpf(NumberHelper.numberOnly(cliente.getCpf()));
         }
